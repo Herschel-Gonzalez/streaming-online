@@ -36,7 +36,6 @@ import TheWelcome from '../components/TheWelcome.vue'
   </main>
 </template>
 <script>
-
 export default{
   data() {
     return {
@@ -58,6 +57,20 @@ export default{
       console.log(this.nombre);
       if (this.nombre && this.paterno && this.materno && this.edad && this.fecha && this.sexo && this.genero && this.correo && this.password) {
         //enviamos el formulario
+        firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(user => {
+          this.nombre = '';
+          this.paterno = '';
+          this.materno = '';
+          this.edad = '';
+          this.fecha = '';
+          this.sexo = '';
+          this.genero = '';
+          this.correo = '';
+          this.password = '';
+          console.log(user);
+        }).catch(err => {
+          this.error = err.message;
+        });
       }else{
         this.error = "Todos los campos son requeridos";
       }
