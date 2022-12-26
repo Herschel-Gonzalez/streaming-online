@@ -6,7 +6,7 @@ import './assets/main.css'
 
 import { initializeApp } from 'firebase/app';
 
-import { getAuth } from 'firebase/auth';
+//import { getAuth } from 'firebase/auth';
 
 
 const firebaseApp = initializeApp({
@@ -18,7 +18,7 @@ const firebaseApp = initializeApp({
   appId: "1:14790765745:web:9a54a9b51c41a0dd0e8690"
 });
 
-const auth = getAuth(firebaseApp);
+//const auth = getAuth(firebaseApp);
 
 const app = createApp(App)
 
