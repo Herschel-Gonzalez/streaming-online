@@ -5,15 +5,25 @@ import HelloWorld from './components/HelloWorld.vue'
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+    <div>
+      
+      <template v-if="user">
+        <RouterLink to="/dashboard">Dashboard </RouterLink>
+        <button @click.prevent="logout">Cerrar sesion</button>
 
-      <nav>
-        <RouterLink to="/login">Login</RouterLink>
-        <RouterLink to="/registro">Registro</RouterLink>
-      </nav>
+        
+      </template>
+
+      <template v-else>
+        <nav >
+          <RouterLink to="/login">Login</RouterLink>
+          <RouterLink to="/registro">Registro</RouterLink>
+        </nav>
+      </template>
+
+      
+      
     </div>
   </header>
 
@@ -24,6 +34,8 @@ import HelloWorld from './components/HelloWorld.vue'
 header {
   line-height: 1.5;
   max-height: 100vh;
+  
+  
 }
 
 .logo {
@@ -73,13 +85,56 @@ nav a:first-of-type {
     flex-wrap: wrap;
   }
 
+
   nav {
     text-align: left;
-    margin-left: -1rem;
+    margin-left: -21rem;
     font-size: 1rem;
-
     padding: 1rem 0;
-    margin-top: 1rem;
+    margin-top: -28rem;
+    
+}
+
+.menu{
+  padding-left: 10cm;
+}
+
+
+  
+}
+
+
+
+
+</style>
+
+<script>
+
+import firebase from 'firebase';
+
+export default{
+  data(){
+    return {
+      user: null
+    }
+
+  },
+  methods: {
+    logout(){
+      firebase.auth().signOut().then(()=>{
+        this.$router.push({name:'login'})
+      })
+    }
+  },
+  created(){
+    firebase.auth().onAuthStateChanged(user=>{
+      if (user) {
+        this.user=user;
+      }else{
+        this.user=null;
+      }
+    })
   }
 }
-</style>
+
+</script>
