@@ -3,7 +3,9 @@ import HomeView from '../views/HomeView.vue'
 import LoginView from '../views/LoginView.vue'
 import RegistroView from '../views/RegistroView.vue'
 import DashboardView from '../views/DashboardView.vue'
+import BuscarView from '../views/BuscarView.vue'
 import firebase from 'firebase'
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -38,7 +40,12 @@ const router = createRouter({
       meta:{
         requiresAuth: true
       }
-    }
+    },
+    {
+      path: '/buscar',
+      name: 'buscar',
+      component: BuscarView
+    },
   ]
 })
 
