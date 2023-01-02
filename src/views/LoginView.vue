@@ -6,10 +6,16 @@ import TheWelcome from '../components/TheWelcome.vue'
   <main>
 
     <form action="#"  @submit.prevent="login">
-      <input type="mail" placeholder="Correo" v-model="correo">
-      <input type="password" placeholder="Contraseña" v-model="password">
-      <button type="submit">Iniciar Sesión</button>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Correo</label><br>
+        <input type="mail" placeholder="Correo" class="form-control" v-model="correo"><br>
+        <label for="exampleFormControlInput1" class="form-label">Contraseña</label><br>
+        <input type="password" class="form-control" placeholder="Contraseña" v-model="password"><br>
+        <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+      </div>
+      
     </form>
+    
     
     <div v-if="error">
         {{ error }}
